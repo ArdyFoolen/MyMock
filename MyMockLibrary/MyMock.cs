@@ -86,6 +86,8 @@ namespace MyMockLibrary
             var returnValue = "";
             if (typeCode == TypeCode.Object && returnTypeName != "void")
                 returnValue = $"result as {returnTypeName}";
+            else if (returnTypeName == "void")
+                returnValue = string.Empty;
             else
                 returnValue = $"({returnTypeName})result";
 

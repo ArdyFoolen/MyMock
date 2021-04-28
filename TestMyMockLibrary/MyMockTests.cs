@@ -1,5 +1,6 @@
 using MyMockLibrary;
 using NUnit.Framework;
+using TestMyMockLibrary;
 
 namespace TestMyMock
 {
@@ -113,6 +114,36 @@ namespace TestMyMock
 			Assert.AreSame(example, mockExample.Object);
 			Assert.AreEqual("hi from MyMock", example.ExampleMethod());
 			Assert.AreEqual(4321, example.MagicNumber(1234));
+		}
+
+		[Test]
+		public void Mock_ShouldMock2()
+		{
+			// Arrange
+			var mockExample = new MyMock<IExample>();
+			var mockExample2 = new MyMock<IExample2>();
+
+			// Act
+			mockExample2.MockMethod(nameof(IExample2.GetExample), mockExample.Object);
+			var example = mockExample2.Object;
+
+			// Assert
+			Assert.AreSame(mockExample.Object, example.GetExample());
+		}
+
+		[Test]
+		public void Mock_ShouldMock2_Again()
+		{
+			// Arrange
+			var mockExample = new MyMock<IExample>();
+			var mockExample2 = new MyMock<IExample2>();
+
+			// Act
+			mockExample2.MockMethod(nameof(IExample2.DoSomeThing), mockExample.Object);
+			var example = mockExample2.Object;
+
+			// Assert
+			Assert.DoesNotThrow(() => example.DoSomeThing());
 		}
 	}
 }
