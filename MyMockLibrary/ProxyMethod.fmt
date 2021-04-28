@@ -1,0 +1,5 @@
+﻿			public {1} {0}({2})
+			{{
+				var result = InterceptMethod(nameof({0}));
+				return {3};
+			}}

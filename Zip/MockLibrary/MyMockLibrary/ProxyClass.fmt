@@ -1,0 +1,32 @@
+﻿// Class is auto generated
+// By the MyMock class with generic interface parameter,
+// it generates this source code and compiles it
+
+{0}
+
+namespace MyMockLibrary
+{{
+	public partial class MyMock<TMockable>
+		where TMockable : class
+	{{
+		private class {1}Proxy : {2}
+		{{
+			private readonly Dictionary<string, Func<object>> _methodInterceptors;
+
+			public {1}Proxy(Dictionary<string, Func<object>> methodInterceptors)
+			{{
+				_methodInterceptors = methodInterceptors;
+			}}
+
+			public object InterceptMethod(string methodName)
+			{{
+				if (!_methodInterceptors.ContainsKey(methodName))
+					throw new NotImplementedException();
+				return _methodInterceptors[methodName]();
+			}}
+
+			// These are the methods generated from the interface
+{3}
+		}}
+	}}
+}}

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMockLibrary", "MyMockLibrary\MyMockLibrary.csproj", "{91F94B48-485E-4341-B50E-790B7AC8CE4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMyMockLibrary", "TestMyMockLibrary\TestMyMockLibrary.csproj", "{CDA9BF7F-9EC2-4267-9BE1-CA8706FBDB59}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91F94B48-485E-4341-B50E-790B7AC8CE4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91F94B48-485E-4341-B50E-790B7AC8CE4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91F94B48-485E-4341-B50E-790B7AC8CE4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91F94B48-485E-4341-B50E-790B7AC8CE4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDA9BF7F-9EC2-4267-9BE1-CA8706FBDB59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDA9BF7F-9EC2-4267-9BE1-CA8706FBDB59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDA9BF7F-9EC2-4267-9BE1-CA8706FBDB59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDA9BF7F-9EC2-4267-9BE1-CA8706FBDB59}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {502E0CC2-54FB-4638-940A-DB38DE44DB78}
+	EndGlobalSection
+EndGlobal
