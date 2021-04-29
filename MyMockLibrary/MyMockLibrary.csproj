@@ -86,6 +86,7 @@
     <None Include="packages.config" />
     <EmbeddedResource Include="ProxyClass.fmt" />
     <EmbeddedResource Include="ProxyMethod.fmt" />
+    <EmbeddedResource Include="ProxyProperty.fmt" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />

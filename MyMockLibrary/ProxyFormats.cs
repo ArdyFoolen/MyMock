@@ -22,5 +22,12 @@ namespace MyMockLibrary
                 return AssemblyResources.GetResource("MyMockLibrary.ProxyMethod.fmt");
             }
         }
+        public static string ProxyPropertyFormat
+        {
+            get
+            {
+                return AssemblyResources.GetResource("MyMockLibrary.ProxyProperty.fmt");
+            }
+        }
     }
 }

@@ -1,0 +1,11 @@
+﻿			public {1} {0}
+			{{
+				get
+				{{
+					var result = InterceptMethod("get_{0}");
+					return {2};
+				}}
+				set
+				{{
+				}}
+			}}
