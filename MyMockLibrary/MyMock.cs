@@ -127,9 +127,22 @@ namespace MyMockLibrary
 
             var parameters = string.Join(", ",
                 mockableMethod.GetParameters()
-                .Select(x => $"{x.ParameterType.Name} {x.Name}"));
+                .Select(x => $"{GetParameterByRef(x)}{x.ParameterType.Name.Replace("&", "")} {x.Name}"));
 
             return string.Format(ProxyFormats.ProxyMethodFormat, methodName, returnTypeName, parameters, returnValue);
+        }
+
+        private object GetParameterByRef(ParameterInfo x)
+        {
+            string refType = string.Empty;
+
+            if (x.ParameterType.IsByRef)
+                if (x.IsOut)
+                    refType = "out ";
+                else
+                    refType = "ref ";
+
+            return refType;
         }
 
         private IEnumerable<MethodInfo> GetMockableMethods()

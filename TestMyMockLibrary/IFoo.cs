@@ -10,5 +10,8 @@ namespace TestMyMockLibrary
     {
         string Name { get; set; }
         int Value { get; set; }
+
+        void GetValueByRef(ref int value);
+        //void GetValueByOut(out int value);
     }
 }
