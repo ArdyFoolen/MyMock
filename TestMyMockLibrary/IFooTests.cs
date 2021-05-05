@@ -39,5 +39,36 @@ namespace TestMyMockLibrary
             // Assert
             Assert.AreEqual(5, example.Value);
         }
+
+        [Test]
+        public void GetValueByRef_ShouldSucceed()
+        {
+            // Arrange
+            var mockExample = new MyMock<IFoo>();
+            int myValue = 76;
+
+            // Act
+            mockExample.MockMethod(nameof(IFoo.GetValueByRef), 5);
+            var example = mockExample.Object;
+            example.GetValueByRef(ref myValue);
+
+            // Assert
+            Assert.AreEqual(76, myValue);
+        }
+
+        [Test]
+        public void GetValueByOut_ShouldSucceed()
+        {
+            // Arrange
+            var mockExample = new MyMock<IFoo>();
+
+            // Act
+            mockExample.MockMethod(nameof(IFoo.GetValueByOut), 5);
+            var example = mockExample.Object;
+            example.GetValueByOut(out int myValue);
+
+            // Assert
+            Assert.AreEqual(default(int), myValue);
+        }
     }
 }
