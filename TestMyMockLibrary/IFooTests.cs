@@ -19,7 +19,7 @@ namespace TestMyMockLibrary
             var mockExample = new MyMock<IFoo>();
 
             // Act
-            mockExample.MockMethod(x => x.Name, "Is Property");
+            mockExample.Mock(x => x.Name, "Is Property");
             var example = mockExample.Object;
 
             // Assert
@@ -33,7 +33,7 @@ namespace TestMyMockLibrary
             var mockExample = new MyMock<IFoo>();
 
             // Act
-            mockExample.MockMethod(x => x.Value, 5);
+            mockExample.Mock(x => x.Value, 5);
             var example = mockExample.Object;
 
             // Assert
@@ -48,7 +48,7 @@ namespace TestMyMockLibrary
             int myValue = 76;
 
             // Act
-            mockExample.MockMethod(nameof(IFoo.GetValueByRef));
+            mockExample.Mock(nameof(IFoo.GetValueByRef));
             var example = mockExample.Object;
             example.GetValueByRef(ref myValue);
 
@@ -63,7 +63,7 @@ namespace TestMyMockLibrary
             var mockExample = new MyMock<IFoo>();
 
             // Act
-            mockExample.MockMethod(nameof(IFoo.GetValueByOut));
+            mockExample.Mock(nameof(IFoo.GetValueByOut));
             var example = mockExample.Object;
             example.GetValueByOut(out int myValue);
 
@@ -79,7 +79,7 @@ namespace TestMyMockLibrary
             int myValue = 76;
 
             // Act
-            mockExample.MockMethod(x => x.GetValueByRef(ref myValue));
+            mockExample.Mock(x => x.GetValueByRef(ref myValue));
             var example = mockExample.Object;
             example.GetValueByRef(ref myValue);
 
@@ -95,7 +95,7 @@ namespace TestMyMockLibrary
             int myValue;
 
             // Act
-            mockExample.MockMethod(x => x.GetValueByOut(out myValue));
+            mockExample.Mock(x => x.GetValueByOut(out myValue));
             var example = mockExample.Object;
             example.GetValueByOut(out myValue);
 

@@ -19,24 +19,24 @@ namespace MyMockLibrary
 
         #endregion
 
-        public MyMock<TMockable> MockMethod<TResult>(
+        public MyMock<TMockable> Mock<TResult>(
             Expression<Func<TMockable, TResult>> methodCall, TResult result)
             => MockMethodCallOrProperty(methodCall.Body, result);
 
-        public MyMock<TMockable> MockMethod(
+        public MyMock<TMockable> Mock(
             Expression<Action<TMockable>> methodCall)
             => MockMethodCallOrProperty<object>(methodCall.Body, null);
 
-        public MyMock<TMockable> MockMethod<TResult>(
+        public MyMock<TMockable> Mock<TResult>(
             string methodName, TResult result)
         {
             _methodInterceptors[methodName] = () => result;
             return this;
         }
 
-        public MyMock<TMockable> MockMethod(
+        public MyMock<TMockable> Mock(
             string methodName)
-            => MockMethod<object>(methodName, null);
+            => Mock<object>(methodName, null);
 
         public TMockable Object
         {
@@ -65,13 +65,13 @@ namespace MyMockLibrary
         private MyMock<TMockable> MockMethodCall<TResult>(
             MethodCallExpression method, TResult result)
         {
-            return MockMethod(method.Method.Name, result);
+            return Mock(method.Method.Name, result);
         }
 
         private MyMock<TMockable> MockProperty<TResult>(
             MemberExpression property, TResult result)
         {
-            return MockMethod($"get_{property.Member.Name}", result);
+            return Mock($"get_{property.Member.Name}", result);
         }
 
         private Type CreateType()

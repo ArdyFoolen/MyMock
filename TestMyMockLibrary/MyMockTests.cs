@@ -18,7 +18,7 @@ namespace TestMyMock
 			var mockExample = new MyMock<IExample>();
 
 			// Act
-			mockExample.MockMethod(x => x.ExampleMethod(), "hi from MyMock");
+			mockExample.Mock(x => x.ExampleMethod(), "hi from MyMock");
 			var example = mockExample.Object;
 
 			// Assert
@@ -32,7 +32,7 @@ namespace TestMyMock
 			var mockExample = new MyMock<IExample>();
 
 			// Act
-			mockExample.MockMethod(x => x.MagicNumber(1234), 4321);
+			mockExample.Mock(x => x.MagicNumber(1234), 4321);
 			var example = mockExample.Object;
 
 			// Assert
@@ -46,8 +46,8 @@ namespace TestMyMock
 			var mockExample = new MyMock<IExample>();
 
 			// Act
-			mockExample.MockMethod(x => x.ExampleMethod(), "hi from MyMock");
-			mockExample.MockMethod(x => x.MagicNumber(1234), 4321);
+			mockExample.Mock(x => x.ExampleMethod(), "hi from MyMock");
+			mockExample.Mock(x => x.MagicNumber(1234), 4321);
 			var example = mockExample.Object;
 
 			// Assert
@@ -62,7 +62,7 @@ namespace TestMyMock
 			var mockExample = new MyMock<IExample>();
 
 			// Act
-			mockExample.MockMethod(nameof(IExample.ExampleMethod), "hi from MyMock");
+			mockExample.Mock(nameof(IExample.ExampleMethod), "hi from MyMock");
 			var example = mockExample.Object;
 
 			// Assert
@@ -76,7 +76,7 @@ namespace TestMyMock
 			var mockExample = new MyMock<IExample>();
 
 			// Act
-			mockExample.MockMethod(nameof(IExample.MagicNumber), 4321);
+			mockExample.Mock(nameof(IExample.MagicNumber), 4321);
 			var example = mockExample.Object;
 
 			// Assert
@@ -90,8 +90,8 @@ namespace TestMyMock
 			var mockExample = new MyMock<IExample>();
 
 			// Act
-			mockExample.MockMethod(nameof(IExample.ExampleMethod), "hi from MyMock");
-			mockExample.MockMethod(nameof(IExample.MagicNumber), 4321);
+			mockExample.Mock(nameof(IExample.ExampleMethod), "hi from MyMock");
+			mockExample.Mock(nameof(IExample.MagicNumber), 4321);
 			var example = mockExample.Object;
 
 			// Assert
@@ -106,9 +106,9 @@ namespace TestMyMock
 			var mockExample = new MyMock<IExample>();
 
 			// Act
-			mockExample.MockMethod(nameof(IExample.ExampleMethod), "hi from MyMock");
+			mockExample.Mock(nameof(IExample.ExampleMethod), "hi from MyMock");
 			var example = mockExample.Object;
-			mockExample.MockMethod(nameof(IExample.MagicNumber), 4321);
+			mockExample.Mock(nameof(IExample.MagicNumber), 4321);
 
 			// Assert
 			Assert.AreSame(example, mockExample.Object);
@@ -124,7 +124,7 @@ namespace TestMyMock
 			var mockExample2 = new MyMock<IExample2>();
 
 			// Act
-			mockExample2.MockMethod(nameof(IExample2.GetExample), mockExample.Object);
+			mockExample2.Mock(nameof(IExample2.GetExample), mockExample.Object);
 			var example = mockExample2.Object;
 
 			// Assert
@@ -139,7 +139,7 @@ namespace TestMyMock
 			var mockExample2 = new MyMock<IExample2>();
 
 			// Act
-			mockExample2.MockMethod(nameof(IExample2.DoSomeThing), mockExample.Object);
+			mockExample2.Mock(nameof(IExample2.DoSomeThing), mockExample.Object);
 			var example = mockExample2.Object;
 
 			// Assert
