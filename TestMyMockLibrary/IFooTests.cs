@@ -48,7 +48,7 @@ namespace TestMyMockLibrary
             int myValue = 76;
 
             // Act
-            mockExample.MockMethod(nameof(IFoo.GetValueByRef), 5);
+            mockExample.MockMethod(nameof(IFoo.GetValueByRef));
             var example = mockExample.Object;
             example.GetValueByRef(ref myValue);
 
@@ -63,9 +63,41 @@ namespace TestMyMockLibrary
             var mockExample = new MyMock<IFoo>();
 
             // Act
-            mockExample.MockMethod(nameof(IFoo.GetValueByOut), 5);
+            mockExample.MockMethod(nameof(IFoo.GetValueByOut));
             var example = mockExample.Object;
             example.GetValueByOut(out int myValue);
+
+            // Assert
+            Assert.AreEqual(default(int), myValue);
+        }
+
+        [Test]
+        public void GetValueByRef_Lambda_ShouldSucceed()
+        {
+            // Arrange
+            var mockExample = new MyMock<IFoo>();
+            int myValue = 76;
+
+            // Act
+            mockExample.MockMethod(x => x.GetValueByRef(ref myValue));
+            var example = mockExample.Object;
+            example.GetValueByRef(ref myValue);
+
+            // Assert
+            Assert.AreEqual(76, myValue);
+        }
+
+        [Test]
+        public void GetValueByOut_Lambda_ShouldSucceed()
+        {
+            // Arrange
+            var mockExample = new MyMock<IFoo>();
+            int myValue;
+
+            // Act
+            mockExample.MockMethod(x => x.GetValueByOut(out myValue));
+            var example = mockExample.Object;
+            example.GetValueByOut(out myValue);
 
             // Assert
             Assert.AreEqual(default(int), myValue);

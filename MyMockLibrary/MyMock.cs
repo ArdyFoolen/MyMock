@@ -21,13 +21,11 @@ namespace MyMockLibrary
 
         public MyMock<TMockable> MockMethod<TResult>(
             Expression<Func<TMockable, TResult>> methodCall, TResult result)
-        {
-            if (methodCall.Body is MethodCallExpression)
-                return MockMethodCall((MethodCallExpression)methodCall.Body, result);
-            if (methodCall.Body is MemberExpression)
-                return MockProperty((MemberExpression)methodCall.Body, result);
-            throw new ArgumentException();
-        }
+            => MockMethodCallOrProperty(methodCall.Body, result);
+
+        public MyMock<TMockable> MockMethod(
+            Expression<Action<TMockable>> methodCall)
+            => MockMethodCallOrProperty<object>(methodCall.Body, null);
 
         public MyMock<TMockable> MockMethod<TResult>(
             string methodName, TResult result)
@@ -35,6 +33,10 @@ namespace MyMockLibrary
             _methodInterceptors[methodName] = () => result;
             return this;
         }
+
+        public MyMock<TMockable> MockMethod(
+            string methodName)
+            => MockMethod<object>(methodName, null);
 
         public TMockable Object
         {
@@ -50,6 +52,15 @@ namespace MyMockLibrary
         }
 
         #region Private methods to CreateType
+
+        private MyMock<TMockable> MockMethodCallOrProperty<TResult>(Expression methodCallBody, TResult result)
+        {
+            if (methodCallBody is MethodCallExpression)
+                return MockMethodCall((MethodCallExpression)methodCallBody, result);
+            if (methodCallBody is MemberExpression)
+                return MockProperty((MemberExpression)methodCallBody, result);
+            throw new ArgumentException();
+        }
 
         private MyMock<TMockable> MockMethodCall<TResult>(
             MethodCallExpression method, TResult result)
