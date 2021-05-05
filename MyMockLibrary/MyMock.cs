@@ -125,20 +125,26 @@ namespace MyMockLibrary
             else
                 returnValue = $"({returnTypeName})result";
 
+            IList<string> outList = new List<string>();
             var parameters = string.Join(", ",
                 mockableMethod.GetParameters()
-                .Select(x => $"{GetParameterByRef(x)}{x.ParameterType.Name.Replace("&", "")} {x.Name}"));
+                .Select(x => $"{GetParameterByRef(x, outList)}{x.ParameterType.Name.Replace("&", "")} {x.Name}"));
 
-            return string.Format(ProxyFormats.ProxyMethodFormat, methodName, returnTypeName, parameters, returnValue);
+            var bodyOutDefaultAssignments = string.Join("\r\n", outList);
+
+            return string.Format(ProxyFormats.ProxyMethodFormat, methodName, returnTypeName, parameters, returnValue, bodyOutDefaultAssignments);
         }
 
-        private object GetParameterByRef(ParameterInfo x)
+        private string GetParameterByRef(ParameterInfo x, IList<string> outList)
         {
             string refType = string.Empty;
 
             if (x.ParameterType.IsByRef)
                 if (x.IsOut)
+                {
                     refType = "out ";
+                    outList.Add($"{x.Name} = default({x.ParameterType.Name.Replace("&", "")});");
+                }
                 else
                     refType = "ref ";
 
